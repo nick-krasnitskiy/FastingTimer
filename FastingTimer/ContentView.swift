@@ -21,7 +21,9 @@ struct ContentView: View {
     
     var content: some View {
         VStack {
+            // Mark: Progress Ring
             
+            ProgressRing()
         }
     }
 }
