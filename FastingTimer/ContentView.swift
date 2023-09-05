@@ -10,7 +10,7 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         ZStack {
-            // Mark: Background
+            // MARK: Background
             
             Color(#colorLiteral(red: 0.03765159696, green: 0, blue: 0.07409374787, alpha: 1))
                 .ignoresSafeArea()
@@ -21,7 +21,7 @@ struct ContentView: View {
     
     var content: some View {
         VStack {
-            // Mark: Progress Ring
+            // MARK: Progress Ring
             
             ProgressRing()
         }
