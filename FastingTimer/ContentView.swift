@@ -8,6 +8,19 @@
 import SwiftUI
 
 struct ContentView: View {
+    @StateObject var fastingManager = FastingManager()
+    
+    var title: String {
+        switch fastingManager.fastingState {
+        case .notStarted:
+            return "Let's get started!"
+        case .fasting:
+            return "You are now fasting"
+        case .feeding:
+            return "You are now feeding"
+        }
+    }
+    
     var body: some View {
         ZStack {
             // MARK: Background
@@ -24,7 +37,7 @@ struct ContentView: View {
             VStack(spacing: 40) {
                 // MARK: Title
                 
-                Text("Let's get started!")
+                Text(title)
                     .font(.headline)
                     .foregroundColor(Color(#colorLiteral(red: 0.2196078449, green: 0.007843137719, blue: 0.8549019694, alpha: 1)))
                 
@@ -50,7 +63,7 @@ struct ContentView: View {
                     // MARK: Start Time
                     
                     VStack(spacing: 5) {
-                        Text("Start")
+                        Text(fastingManager.fastingState == .notStarted ? "Start" : "Started")
                             .opacity(0.7)
                         
                         Text(Date(), format: .dateTime.weekday().hour().minute().second())
@@ -60,7 +73,7 @@ struct ContentView: View {
                     // MARK: End Time
                     
                     VStack(spacing: 5) {
-                        Text("End")
+                        Text(fastingManager.fastingState == .notStarted ? "End" : "Ends")
                             .opacity(0.7)
                         
                         Text(Date().addingTimeInterval(16), format: .dateTime.weekday().hour().minute().second())
@@ -71,9 +84,9 @@ struct ContentView: View {
                 // MARK: Button
                 
                 Button {
-                    
+                    fastingManager.toggleFastingState()
                 } label: {
-                    Text("Start fasting")
+                    Text(fastingManager.fastingState == .fasting ? "End fast" : "Start fasting")
                         .font(.title3)
                         .fontWeight(.semibold)
                         .padding(.horizontal, 24)
