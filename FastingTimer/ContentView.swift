@@ -43,7 +43,7 @@ struct ContentView: View {
                 
                 // MARK: Fasting Plan
                 
-                Text("16:8")
+                Text(fastingManager.fastingPlan.rawValue)
                     .fontWeight(.semibold)
                     .padding(.horizontal, 24)
                     .padding(.vertical, 8)
